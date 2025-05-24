@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippet Viewer</title>
+    
+    <link href="styles.css" rel="stylesheet">
+    <!-- Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" id="prism-light-theme">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css" rel="stylesheet" id="prism-dark-theme" disabled>
+    
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4dd.png">
+    <meta name="description" content="Visualize, destaque e compartilhe snippets de código com facilidade. Editor de código online com syntax highlighting, exportação e temas.">
+    <meta name="keywords" content="editor de código, code snippet, syntax highlighting, exportar código, compartilhar código, prismjs, online, dark mode, responsivo">
+    <meta name="author" content="Seu Nome ou Marca">
+    <meta property="og:title" content="Code Snippet Viewer">
+    <meta property="og:description" content="Visualize, destaque e compartilhe snippets de código com facilidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4dd.png">
+    <meta property="og:url" content="">
+</head>
+<body data-theme="light">
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>📝</span>
+                    Code Snippet Viewer
+                </div>
+                
+                <div class="header-controls">
+                    <select class="select" id="languageSelect">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="json">JSON</option>
+                        <option value="xml">XML</option>
+                        <option value="sql">SQL</option>
+                        <option value="php">PHP</option>
+                        <option value="cpp">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="typescript">TypeScript</option>
+                    </select>
+                    
+                    <button class="btn" id="loadFileBtn">
+                        📁 Carregar Arquivo
+                    </button>
+                    
+                    <button class="btn" id="newTabBtn">
+                        ➕ Nova Aba
+                    </button>
+                    
+                    <button class="btn" id="copyBtn">
+                        📋 Copiar
+                    </button>
+                    
+                    <button class="btn" id="exportBtn">
+                        💾 Exportar
+                    </button>
+                    <button class="btn" id="exportPdfBtn">
+                        🖨️ Exportar PDF
+                    </button>
+                    
+                    <button class="btn btn-icon" id="themeToggle" title="Toggle Dark/Light Mode">
+                        🌙
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="editor-layout">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Editor</div>
+                        <div class="tabs" id="editorTabs">
+                            <button class="tab active" data-tab="0">
+                                Snippet 1
+                                <span class="tab-close" data-close="0">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="tab-title-container">
+                            <input id="tabNameInput" class="tab-title-input" maxlength="40" />
+                        </div>
+                        <div class="file-drop-zone" id="dropZone">
+                            Arraste arquivos aqui ou use o botão "Carregar Arquivo"
+                        </div>
+                        <textarea 
+                            class="code-input" 
+                            id="codeInput" 
+                            placeholder="Cole seu código aqui ou carregue um arquivo..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Preview com Syntax Highlighting</div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="code-output" id="codeOutput">
+                            <pre><code>// Seu código aparecerá aqui com destaque de sintaxe</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="keyboard-shortcuts">
+        <strong>Atalhos:</strong><br>
+        Ctrl+V: Colar | Ctrl+C: Copiar | Ctrl+D: Tema | Ctrl+N: Nova Aba
+    </div>
+
+    <input type="file" id="fileInput" class="hidden-input" accept=".js,.py,.java,.html,.css,.json,.xml,.sql,.php,.cpp,.cs,.rb,.go,.rs,.ts,.txt">
+
+    <!-- Prism.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-xml-doc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

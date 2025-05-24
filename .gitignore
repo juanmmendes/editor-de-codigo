@@ -1,0 +1,49 @@
+﻿# Arquivo .gitignore para Code Snippet Viewer
+# Ignora arquivos e pastas que não devem ser versionados pelo Git
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+tmp/
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools como istanbul
+coverage/
+
+# Dependências
+node_modules/
+
+# Cache e histórico
+.npm
+.node_repl_history
+
+# Builds e artefatos
+/dist/
+/build/
+
+# Configurações de IDE/Editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.code-workspace
+
+# Arquivos de ambiente
+.env
+
+# Outros arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Output de 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
