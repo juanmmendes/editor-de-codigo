@@ -30,8 +30,6 @@ Visualize, edite, destaque e compartilhe snippets de código com facilidade. Edi
 - **Ctrl+N**: Nova aba
 - **Ctrl+S**: Exportar código
 
-## Print
-![Print do Editor](https://user-images.githubusercontent.com/placeholder/editor-print.png)
 
 ## Tecnologias
 - HTML5, CSS3, JavaScript
